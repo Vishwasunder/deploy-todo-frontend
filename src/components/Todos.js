@@ -13,7 +13,7 @@ function Todos({ user }) {
     axios.get('https://deploy-todo-backend.onrender.com/api/todos', config)
       .then(res => setTodos(res.data))
       .catch(err => console.error(err.response?.data?.message || 'Error fetching tasks'));
-  }, []);
+  }, [config]);
 
   const addTodo = async () => {
     try {
