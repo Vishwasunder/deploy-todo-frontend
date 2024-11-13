@@ -6,9 +6,13 @@ function Todos({ user }) {
   const [newTask, setNewTask] = useState('');
   const [status, setStatus] = useState('pending');
 
-  const token = localStorage.getItem('token');
-  const config = { headers: { Authorization: `Bearer ${token}` } };
-
+  // const token = localStorage.getItem('token');
+  // const config = { headers: { Authorization: `Bearer ${token}` } };
+  const config = useMemo(() => ({
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+  }), []);
   useEffect(() => {
     axios.get('https://deploy-todo-backend.onrender.com/api/todos', config)
       .then(res => setTodos(res.data))
